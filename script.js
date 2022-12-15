@@ -2,14 +2,27 @@ const canvas = document.getElementById("canvas");
 const plusBtn = document.getElementById("plus");
 const minusBtn = document.getElementById("minus");
 const spansize = document.getElementById("size");
+const colorInput = document.getElementById("color");
+const clearBtn = document.getElementById("clearbtn");
+
 const ctx = canvas.getContext("2d");
 
-let size = 30;
+let size = 20;
 let isPressed = false;
+let color = "black";
+
+clearBtn.addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+})
+
+colorInput.addEventListener("change", () => {
+    color = colorInput.value
+})
 
 const drawcircle = (x, y) => {
     ctx.beginPath();
     ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fillStyle = color;
     ctx.fill();
 };
 
